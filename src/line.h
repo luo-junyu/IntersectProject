@@ -6,9 +6,9 @@
 class Line
 {
 public:
-	Line(int x1, int y1, int x2, int y2);
+	Line(long long x1, long long y1, long long x2, long long y2);
 	struct Position intersect(Line&);
-	int a, b, c;
+	long long a, b, c;
 	Line();
 	~Line();
 private:

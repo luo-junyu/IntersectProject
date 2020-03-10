@@ -1,4 +1,5 @@
 ﻿#include "intersect.h"
+#include <math.h>
 
 bool posCompare(const Position& point1, const Position& point2)
 {
