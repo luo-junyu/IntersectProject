@@ -15,9 +15,6 @@ Line::Line(long long x1, long long y1, long long x2, long long y2)
 	this->y2 = y2;
 }
 
-Line::~Line()
-{
-}
 
 struct Position Line::intersect(Line& other_line) {
 	long long lower = this->a * other_line.b - this->b * other_line.a;

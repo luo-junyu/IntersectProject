@@ -14,7 +14,11 @@ public:
 		this->y = y;
 		this->r = r;
 	}
-	Circle() {}
+	Circle() {
+		this->x = 0;
+		this->y = 0;
+		this->r = 0;
+	}
 	long long x, y, r;
 	void lineIntersect(const Line&, vector<struct Position>&);
 	void circleIntersect(const Circle&, vector<struct Position>&);

@@ -24,8 +24,7 @@ int main(int argc, char** argv)
 	int line_num = 0;
 	int circle_num = 0;
 
-	// input.open("input.txt");
-	
+
 	for (int index = 0; index < argc; index++) {
 		if ((string)argv[index] == "-i") {
 			input.open(argv[index + 1]);
@@ -35,7 +34,7 @@ int main(int argc, char** argv)
 			index++;
 		}
 	}
-	
+
 	input >> n;
 	for (int i = 0; i < n; i++) {
 		input >> flag;
@@ -94,6 +93,7 @@ int main(int argc, char** argv)
 	// delete the repeat points
 	sort(points.begin(), points.end(), posCompare);
 	auto points_end = unique(points.begin(), points.end(), posEqual);
+
 	// cout << points_end - points.begin() << endl;
 
 	output << points_end - points.begin();
