@@ -11,8 +11,11 @@ void Circle::lineIntersect(const Line& line, vector<struct Position>& res_vector
 	long long d_x1 = this->x - line.x1;
 	long long d_y1 = this->y - line.y1;
 	double denominator = sqrt((double)norm);
-	double distance = fabs((x2_x1 * d_y1 - d_x1 * y2_y1 )/ denominator);
-	if (distance - this->r * 1.0 < eps) {
+
+	// dis = Ax0+By0+C
+	// distance from the line to circle
+	double distance = fabs((line.a * this->x + line.b * this->y + line.c)/ denominator);
+	if (distance - this->r * 1.0 < eps) {	// has intersect
 		double r_ = (d_x1 * x2_x1 + d_y1 * y2_y1) * 1.0 / norm;
 		double d_x4 = x2_x1 / denominator;
 		double d_y4 = y2_y1 / denominator;
