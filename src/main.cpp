@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "intersect.h"
 #include "line.h"
+#include "circle.h"
 #include <vector>
 #include <fstream>
 #include <algorithm>
@@ -10,6 +11,7 @@ using namespace std;
 
 vector<struct Position> points;
 vector<Line> lines;
+vector<Circle> circles;
 
 int main(int argc, char** argv)
 {
@@ -18,9 +20,11 @@ int main(int argc, char** argv)
 	int n;
 	char flag;
 	long long x1, y1, x2, y2;
+	long long x, y, r;
 	int line_num = 0;
+	int circle_num = 0;
 
-	input.open("input.txt");
+	// input.open("input.txt");
 	
 	for (int index = 0; index < argc; index++) {
 		if ((string)argv[index] == "-i") {
@@ -40,9 +44,18 @@ int main(int argc, char** argv)
 			Line tmpLine(x1, y1, x2, y2);
 			lines.push_back(tmpLine);
 			line_num++;
+		} else if (flag == 'C') {
+			input >> x >> y >> r;	
+			Circle tmpCircle(x, y, r);
+			circles.push_back(tmpCircle);
+			circle_num++;
 		}
 	}
-	cout << line_num << endl;
+
+	input.close();
+	
+
+	// Line & Line
 
 	for (int i = 0; i < line_num; i++) {
 		for (int j = i + 1; j < line_num; j++) {
@@ -56,12 +69,35 @@ int main(int argc, char** argv)
 			
 		}
 	}
+
+	// Line & Circle
+
+	for (int i = 0; i < line_num; i++) {
+		for (int j = 0; j < circle_num; j++) {
+			Line& tmpLine = lines[i];
+			Circle& tmpCircle = circles[j];
+			tmpCircle.lineIntersect(tmpLine, points);
+		}
+	}
+
+	// Circle & Circle
+	
+	for (int i = 0; i < circle_num; i++) {
+		for (int j = i + 1; j < circle_num; j++) {
+			Circle& circle1 = circles[i];
+			Circle& circle2 = circles[j];
+			circle1.circleIntersect(circle2, points);
+		}
+	}
 	
 
 	// delete the repeat points
 	sort(points.begin(), points.end(), posCompare);
 	auto points_end = unique(points.begin(), points.end(), posEqual);
-	cout << points_end - points.begin() << endl;
+	// cout << points_end - points.begin() << endl;
+
+	output << points_end - points.begin();
+	output.close();
 
 	return 0;
 }

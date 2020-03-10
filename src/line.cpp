@@ -9,6 +9,10 @@ Line::Line(long long x1, long long y1, long long x2, long long y2)
 	this->a = y2 - y1;
 	this->b = x1 - x2;
 	this->c = x2 * y1 - x1 * y2;
+	this->x1 = x1;
+	this->y1 = y1;
+	this->x2 = x2;
+	this->y2 = y2;
 }
 
 Line::~Line()
