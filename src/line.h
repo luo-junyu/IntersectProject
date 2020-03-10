@@ -10,7 +10,6 @@ public:
 	struct Position intersect(Line&);
 	long long a, b, c;
 	long long x1, y1, x2, y2;
-	Line();
 private:
 	
 };

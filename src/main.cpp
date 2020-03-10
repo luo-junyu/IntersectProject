@@ -27,11 +27,11 @@ int main(int argc, char** argv)
 
 	for (int index = 0; index < argc; index++) {
 		if ((string)argv[index] == "-i") {
-			input.open(argv[index + 1]);
 			index++;
+			input.open(argv[index]);
 		} else if ((string)argv[index] == "-o") {
-			output.open(argv[index + 1]);
 			index++;
+			output.open(argv[index]);
 		}
 	}
 
@@ -63,9 +63,7 @@ int main(int argc, char** argv)
 			long long denominator = line1.a * line2.b - line1.b * line2.a;
 			if (denominator != 0) {
 				points.push_back(line1.intersect(line2));
-			} else {
-			}
-			
+			} 
 		}
 	}
 
@@ -89,7 +87,6 @@ int main(int argc, char** argv)
 		}
 	}
 	
-
 	// delete the repeat points
 	sort(points.begin(), points.end(), posCompare);
 	auto points_end = unique(points.begin(), points.end(), posEqual);
